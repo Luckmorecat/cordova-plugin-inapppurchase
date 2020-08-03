@@ -10,7 +10,7 @@
 #import <Cordova/CDVWebViewEngineProtocol.h>
 
 
-@interface UplandReceiptVerifier : NSObject<RMStoreReceiptVerifier>;
+@interface UplandAnalytic : NSObject<RMStoreReceiptVerifier>;
 
 @property (nonatomic, weak) id <CDVWebViewEngineProtocol> webView;
 
@@ -20,5 +20,10 @@
 
 - (void)verifyTransaction:(SKPaymentTransaction *)transaction success:(void (^)(void))successBlock failure:(void (^)(NSError *))failureBlock;
 
+- (void)failTransaction:(SKPaymentTransaction *)transaction error:(NSError *)err;
+
+- (void)restoreTransaction:(SKPaymentTransaction *)transaction;
+
+- (void)didDeferTransaction:(SKPaymentTransaction *)transaction;
 
 @end

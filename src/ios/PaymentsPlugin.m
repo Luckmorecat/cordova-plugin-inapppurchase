@@ -15,7 +15,7 @@
 @implementation PaymentsPlugin
 
 - (void)pluginInitialize {
-  _uplandService = [[UplandReceiptVerifier alloc] initWithWebView:self.webViewEngine];
+  _uplandService = [[UplandAnalytic alloc] initWithWebView:self.webViewEngine];
   RMStore *store = [RMStore defaultStore];
   store.receiptVerifier = _uplandService;
   [_uplandService setStore:store];

@@ -9,11 +9,11 @@
 
 #import <Foundation/Foundation.h>
 #import <Cordova/CDVPlugin.h>
-#import "UplandReceiptVerifier.h"
+#import "UplandAnalytic.h"
 
 @interface PaymentsPlugin : CDVPlugin
 
-@property (nonatomic) UplandReceiptVerifier *uplandService;
+@property (nonatomic) UplandAnalytic *uplandService;
 
 - (void)getProducts:(CDVInvokedUrlCommand *)command;
 - (void)buy:(CDVInvokedUrlCommand *)command;
