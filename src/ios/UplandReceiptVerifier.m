@@ -61,9 +61,9 @@
     
     [_store refreshReceipt];
     NSURL *receiptUrl = [RMStore receiptURL];
-    
+    NSData *receiptData = [NSData dataWithContentsOfURL:receiptUrl];
     [_webView evaluateJavaScript:[NSString stringWithFormat:@"alert(window._verifyIosTransaction)", [[NSData dataWithContentsOfURL:receiptUrl] base64EncodedStringWithOptions:0]] completionHandler:^(id someId, NSError *error) {
-        NSLog(@"EVALUTE JAVASCRIPT WITH DATA: %@", [[NSData dataWithContentsOfURL:receiptUrl] base64EncodedStringWithOptions:0]);
+        NSLog(@"EVALUTE JAVASCRIPT WITH DATA: %@", [receiptData base64EncodedStringWithOptions:0]);
         
         if (error != nil) {
             NSLog(@"EVALUTE ERROR: %ld", (long)error.code);
@@ -71,7 +71,7 @@
         
     }];
     
-    [_webView evaluateJavaScript:[NSString stringWithFormat:@"window._verifyIosTransaction('%@', '%@')", transaction.transactionIdentifier, [NSData dataWithContentsOfURL:receiptUrl]] completionHandler:^(id someId, NSError *error) {
+    [_webView evaluateJavaScript:[NSString stringWithFormat:@"window._verifyIosTransaction('%@', '%@')", transaction.transactionIdentifier, [receiptData base64EncodedStringWithOptions:0]] completionHandler:^(id someId, NSError *error) {
         NSLog(@"EVALUTE JAVASCRIPT AND CALL SUCCESS");
         
         if (error != nil) {
