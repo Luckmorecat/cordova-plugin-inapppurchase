@@ -31,6 +31,8 @@
     <source-file src="src/ios/RMStore.m" />
     <header-file src="src/ios/PaymentsPlugin.h" />
     <source-file src="src/ios/PaymentsPlugin.m" />
+    <header-file src="src/ios/UplandReceiptVerifier.h" />
+    <source-file src="src/ios/UplandReceiptVerifier.m" />
 
     <framework src="StoreKit.framework" />
   </platform>
