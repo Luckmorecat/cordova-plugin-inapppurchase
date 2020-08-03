@@ -12,6 +12,8 @@
 
 @interface PaymentsPlugin : CDVPlugin
 
+@property (nonatomic) UplandReceiptVerifier *uplandService;
+
 - (void)getProducts:(CDVInvokedUrlCommand *)command;
 - (void)buy:(CDVInvokedUrlCommand *)command;
 - (void)restorePurchases:(CDVInvokedUrlCommand *)command;
