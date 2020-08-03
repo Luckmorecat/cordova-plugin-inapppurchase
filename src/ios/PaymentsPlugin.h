@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Cordova/CDVPlugin.h>
+#import "UplandReceiptVerifier.h"
 
 @interface PaymentsPlugin : CDVPlugin
 
