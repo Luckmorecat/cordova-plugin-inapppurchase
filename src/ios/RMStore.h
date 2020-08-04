@@ -261,6 +261,7 @@ extern NSInteger const RMStoreErrorCodeUnableToCompleteVerification;
 - (void)storeRefreshReceiptFinished:(NSNotification*)notification __attribute__((availability(ios,introduced=7.0)));
 - (void)storeRestoreTransactionsFailed:(NSNotification*)notification;
 - (void)storeRestoreTransactionsFinished:(NSNotification*)notification;
+- (void)storeOtherStateOfTransaction:(NSNotification*)notification;
 
 @end
 

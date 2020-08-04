@@ -26,6 +26,7 @@ NSInteger const RMStoreErrorCodeUnknownProductIdentifier = 100;
 NSInteger const RMStoreErrorCodeUnableToCompleteVerification = 200;
 
 NSString* const RMSKDownloadCanceled = @"RMSKDownloadCanceled";
+NSString* const RMSKOtherState = @"RMSKOtherState";
 NSString* const RMSKDownloadFailed = @"RMSKDownloadFailed";
 NSString* const RMSKDownloadFinished = @"RMSKDownloadFinished";
 NSString* const RMSKDownloadPaused = @"RMSKDownloadPaused";
@@ -332,6 +333,7 @@ typedef void (^RMStoreSuccessBlock)();
     [self addStoreObserver:observer selector:@selector(storeRefreshReceiptFinished:) notificationName:RMSKRefreshReceiptFinished];
     [self addStoreObserver:observer selector:@selector(storeRestoreTransactionsFailed:) notificationName:RMSKRestoreTransactionsFailed];
     [self addStoreObserver:observer selector:@selector(storeRestoreTransactionsFinished:) notificationName:RMSKRestoreTransactionsFinished];
+    [self addStoreObserver:observer selector:@selector(storeOtherStateOfTransaction:) notificationName:RMSKOtherState];
 }
 
 - (void)removeStoreObserver:(id<RMStoreObserver>)observer
@@ -350,6 +352,7 @@ typedef void (^RMStoreSuccessBlock)();
     [[NSNotificationCenter defaultCenter] removeObserver:observer name:RMSKRefreshReceiptFinished object:self];
     [[NSNotificationCenter defaultCenter] removeObserver:observer name:RMSKRestoreTransactionsFailed object:self];
     [[NSNotificationCenter defaultCenter] removeObserver:observer name:RMSKRestoreTransactionsFinished object:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:observer name:RMSKOtherState object:self];
 }
 
 // Private
@@ -383,6 +386,7 @@ typedef void (^RMStoreSuccessBlock)();
                 [self didDeferTransaction:transaction];
                 break;
             default:
+                [self postNotificationWithName:RMSKOtherState transaction:transaction userInfoExtras:nil];
                 break;
         }
     }

@@ -17,8 +17,7 @@
 - (void)pluginInitialize {
   _uplandService = [[UplandAnalytic alloc] initWithWebView:self.webViewEngine];
   RMStore *store = [RMStore defaultStore];
-  store.receiptVerifier = _uplandService;
-  [_uplandService setStore:store];
+    [store addStoreObserver:_uplandService];
 }
 
 - (void)getProducts:(CDVInvokedUrlCommand *)command {
